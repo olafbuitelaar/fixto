@@ -302,8 +302,8 @@ var fixto = (function ($, window, document) {
             className: 'fixto-fixed',
             top: 0,
             mindViewport: false,
-            calcMethod:"default",
-            //calcMethod:"jQuery",
+            //calcMethod:"default",
+            calcMethod:"jQuery",
         };
         this._setOptions(options);
     }
@@ -429,7 +429,8 @@ var fixto = (function ($, window, document) {
         // at ie8 maybe only in vm window resize event fires everytime an element is resized.
         _toresize : ieversion===8 ? document.documentElement : window,
 
-        _onscroll: function _onscroll() {
+        _onscroll: function _onscroll() {            
+            if(!this._running || !this.parent) return; //we're called either while being disabled or being disposed
             this._scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             this._parentBottom = (this.parent.offsetHeight + this._fullOffset('offsetTop', this.parent));
 
