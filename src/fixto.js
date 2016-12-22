@@ -301,7 +301,9 @@ var fixto = (function ($, window, document) {
         this.options = {
             className: 'fixto-fixed',
             top: 0,
-            mindViewport: false
+            mindViewport: false,
+            calcMethod:"default",
+            //calcMethod:"jQuery",
         };
         this._setOptions(options);
     }
@@ -485,10 +487,23 @@ var fixto = (function ($, window, document) {
 
             this.child.style.top = (diff + mindTop + top + this.options.top) - computedStyle.toFloat(childStyles.marginTop) + 'px';
         },
-
+        _fullOffset: function _fullOffset(offsetName, elm, context) {            
+            if(!context && (this.options.calcMethod 
+                || this.options.calcMethod === "jQuery"
+                || (this.options.calcMethod === "default2" && elm != this.parent))
+            ){
+                var offset = $(elm).offset();
+                if(offsetName && offsetName.toLowerCase && offsetName.toLowerCase().indexOf("top")){
+                    return offset.top;
+                }else{
+                    return offset.left;
+                }
+            }
+            return this.__fullOffset.apply(this, arguments);
+        },
         // Calculate cumulative offset of the element.
         // Optionally according to context
-        _fullOffset: function _fullOffset(offsetName, elm, context) {
+        __fullOffset: function _fullOffset(offsetName, elm, context) {
             var offset = elm[offsetName];
             var offsetParent = elm.offsetParent;
 

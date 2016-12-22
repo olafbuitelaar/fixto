@@ -60,7 +60,9 @@ Passing options
         className : 'my-class-name',
         zIndex: 10,
         mind: '#header',
-        top: 20
+        top: 20,
+        //calcMethod:"default",
+        calcMethod:"jQuery",
     });
     
 Instantiate without jQuery:
