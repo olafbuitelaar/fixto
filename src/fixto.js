@@ -506,7 +506,7 @@ var fixto = (function ($, window, document) {
         },
         // Calculate cumulative offset of the element.
         // Optionally according to context
-        __fullOffset: function _fullOffset(offsetName, elm, context) {
+        __fullOffset: function __fullOffset(offsetName, elm, context) {
             var offset = elm[offsetName];
             var offsetParent = elm.offsetParent;
 
