@@ -491,7 +491,7 @@ var fixto = (function ($, window, document) {
         _fullOffset: function _fullOffset(offsetName, elm, context) {
             if(typeof(this.options.calcMethod) == "function"){
                 return this.options.calcMethod.apply(this, arguments);
-            }else if(!context && (this.options.calcMethod 
+            }else if($ && !context && (this.options.calcMethod 
                 || this.options.calcMethod === "jQuery"
                 || (this.options.calcMethod === "default2" && elm === this.parent))
             ){
